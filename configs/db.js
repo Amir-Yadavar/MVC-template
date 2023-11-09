@@ -1,16 +1,29 @@
-const { MongoClient } = require("mongodb");
+// database witout express
 
-const url = "mongodb://0.0.0.0:27017/";
+// const { MongoClient } = require("mongodb");
 
-const dbName = "library";
+// const url = "mongodb://0.0.0.0:27017/";
 
-const dbConection = new MongoClient(url);
+// const dbName = "library";
 
-module.exports = {
-  dbLib: async () => {
-    await dbConection.connect();
-    const db = dbConection.db(dbName);
+// const dbConection = new MongoClient(url);
 
-    return db;
-  },
-};
+// module.exports = {
+//   dbLib: async () => {
+//     await dbConection.connect();
+//     const db = dbConection.db(dbName);
+
+//     return db;
+//   },
+// };
+
+
+// database with express
+
+const mongoose = require("mongoose")
+
+const urlMogoDB = "mongodb://localhost:27017/library"
+
+mongoose.connect(urlMogoDB)
+  .then(() => console.log("server connected yo mongoDb"))
+  .catch((err) => console.log(err))
