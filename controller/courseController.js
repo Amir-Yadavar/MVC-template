@@ -15,3 +15,10 @@ exports.setComment = async (req, res) => {
 
     res.json({ message: "comment added to course successfully" })
 }
+
+exports.getMainCourse = async (req, res) => {
+    let findCourse = await courseModel.findOne({ courseName: req.params.mainCourse }).lean()
+    let comments = await commentsModel.find({ course: findCourse._id }).lean()
+    res.json({ ...findCourse, comments })
+    // console.log(findCourse);
+}

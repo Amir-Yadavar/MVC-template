@@ -4,6 +4,7 @@ server.use(express.json())
 require("./configs/db")
 const courseModel = require("./models/Course")
 const commentsModel = require("./models/Comment")
+const { teachersModel } = require("./models/Teacher")
 
 // server.post("/api/course/comment", async (req, res) => {
 //     // let teacher = await teachersModel.findOne({ _id: "65b2266cb3cf9e040bb78b6b" })
@@ -18,12 +19,21 @@ const commentsModel = require("./models/Comment")
 
 // })
 
+// server.get('/', async (req, res) => {
+//     commentsModel.create({
+//         body: "all ready ....",
+//         course: "65d4fe4d7fee9e28b36edc85"
+//     })
+
+//     res.json("comments")
+// })
+
 
 const usersRouter = require("./routes/users")
 const booksRouter = require('./routes/book')
 const rentRouter = require("./routes/renst")
 const courseRouter = require("./routes/course")
-const { teachersModel } = require("./models/Teacher")
+// const { teachersModel } = require("./models/Teacher")
 
 server.use('/api/users', usersRouter)
 server.use("/api/books", booksRouter)
