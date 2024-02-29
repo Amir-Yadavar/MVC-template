@@ -5,7 +5,8 @@ require("./configs/db")
 const courseModel = require("./models/Course")
 const commentsModel = require("./models/Comment")
 const { teachersModel } = require("./models/Teacher")
-
+const multer = require("multer")
+const uploader = require('./middlewares/multer')
 // server.post("/api/course/comment", async (req, res) => {
 //     // let teacher = await teachersModel.findOne({ _id: "65b2266cb3cf9e040bb78b6b" })
 //     // courseModel.create({
@@ -27,6 +28,11 @@ const { teachersModel } = require("./models/Teacher")
 
 //     res.json("comments")
 // })
+
+server.post('/', uploader.single("profile"), (req, res) => {
+    console.log(req.file);
+    res.json({ mess: "upload successfully .." })
+})
 
 
 const usersRouter = require("./routes/users")
