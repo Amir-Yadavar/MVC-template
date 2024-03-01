@@ -9,7 +9,15 @@ const storage = multer.diskStorage({
         const filename = Date.now() + Math.random()
         const ext = path.extname(file.originalname)
 
-        cb(null, `${filename}${ext}`)
+        const validType = ['.jpg', '.jpeg', '.png']
+
+        if (validType.includes(ext)) {
+
+            cb(null, `${filename}${ext}`)
+        } else {
+            cb(new Error("not valid type .. "))
+        }
+
     }
 })
 

@@ -34,6 +34,13 @@ server.post('/', uploader.single("profile"), (req, res) => {
     res.json({ mess: "upload successfully .." })
 })
 
+// many file upload 
+
+server.post('/manyUpload',uploader.array("profile",3),(req,res)=>{
+    console.log(req.files);
+    res.json({mess:"uploads seccessfully .."})
+})
+
 
 const usersRouter = require("./routes/users")
 const booksRouter = require('./routes/book')
