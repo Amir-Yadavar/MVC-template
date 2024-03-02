@@ -7,6 +7,7 @@ const commentsModel = require("./models/Comment")
 const { teachersModel } = require("./models/Teacher")
 const multer = require("multer")
 const uploader = require('./middlewares/multer')
+const bcrypt = require("bcrypt")
 // server.post("/api/course/comment", async (req, res) => {
 //     // let teacher = await teachersModel.findOne({ _id: "65b2266cb3cf9e040bb78b6b" })
 //     // courseModel.create({
@@ -36,10 +37,17 @@ server.post('/', uploader.single("profile"), (req, res) => {
 
 // many file upload 
 
-server.post('/manyUpload',uploader.array("profile",3),(req,res)=>{
+server.post('/manyUpload', uploader.array("profile", 3), (req, res) => {
     console.log(req.files);
-    res.json({mess:"uploads seccessfully .."})
+    res.json({ mess: "uploads seccessfully .." })
 })
+
+// hash and bcrypt pass
+const salt = bcrypt.genSaltSync(10)
+console.log(salt);
+
+const hashedPass = bcrypt.hashSync("amir123", salt)
+console.log(hashedPass);
 
 
 const usersRouter = require("./routes/users")
